@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Study Tracker",
+  title: "Median Stratum",
   description: "Your Ultimate Academic Companion",
 };
 

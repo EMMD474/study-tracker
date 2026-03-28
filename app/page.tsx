@@ -29,14 +29,11 @@ export default function Home() {
       <nav className="relative z-20 flex items-center justify-between border-b border-[#c8a96e]/10 px-6 py-5 sm:px-12">
         <div className="flex items-center gap-3">
           {/* Logo mark */}
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="28" height="28" rx="6" fill="#c8a96e" fillOpacity="0.12" />
-            <rect x="6" y="8" width="16" height="2" rx="1" fill="#c8a96e" />
-            <rect x="6" y="13" width="11" height="2" rx="1" fill="#c8a96e" fillOpacity="0.7" />
-            <rect x="6" y="18" width="7" height="2" rx="1" fill="#c8a96e" fillOpacity="0.4" />
-          </svg>
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#c8a96e]/10 border border-[#c8a96e]/20">
+            <span className="text-xs font-bold tracking-tighter text-[#c8a96e]">MS</span>
+          </div>
           <span className="text-sm font-semibold tracking-widest text-[#c8a96e] uppercase">
-            Study Tracker
+            Median Stratum
           </span>
         </div>
 
@@ -181,7 +178,7 @@ export default function Home() {
       <footer className="relative z-10 border-t border-[#c8a96e]/8 px-6 py-6 sm:px-12">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
           <p className="text-xs text-[#3a3830]">
-            © {new Date().getFullYear()} Study Tracker
+            © {new Date().getFullYear()} Median Stratum
           </p>
           <p className="text-xs text-[#3a3830]">
             Built for students who mean it.

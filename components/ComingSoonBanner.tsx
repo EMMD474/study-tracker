@@ -9,7 +9,7 @@ export default function ComingSoonBanner() {
         </span>
         
         <p className="tracking-wide">
-          <strong className="font-semibold text-[#c8a96e]">Study Tracker</strong> is currently in active development. Features will be rolling out soon.
+          <strong className="font-semibold text-[#c8a96e]">Median Stratum</strong> is currently in active development. Features will be rolling out soon.
         </p>
       </div>
     </div>
