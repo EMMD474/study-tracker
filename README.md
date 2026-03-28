@@ -2,6 +2,8 @@
 
 Track and plan my studies
 
+**Please see [`design.md`](./design.md) for the detailed project plan and features roadmap.**
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
