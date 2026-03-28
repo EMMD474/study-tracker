@@ -5,8 +5,8 @@ This document breaks down the project design into actionable development steps, 
 ## Section 1: Core Functionality & Setup
 
 ### 1. Project Initialization & Architecture
-- [ ] Initialize Next.js app with App Router.
-- [ ] Configure Tailwind CSS and define the general theme/design system (fonts, colors, basic components).
+- [x] Initialize Next.js app with App Router.
+- [x] Configure Tailwind CSS and define the general theme/design system (fonts, colors, basic components).
 - [ ] Set up the database (e.g., PostgreSQL via Prisma or Drizzle ORM).
 - [ ] Implement authentication (e.g., NextAuth.js or Supabase Auth) with registration and login pages.
 
