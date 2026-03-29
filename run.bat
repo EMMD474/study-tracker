@@ -1,8 +1,4 @@
 @echo off
-echo Starting Study Tracker Database...
-docker compose up -d
-
 echo Starting Study Tracker Development Server...
 pnpm dev
-
 pause
