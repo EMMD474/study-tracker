@@ -1,17 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  /* Dark Navy Blue Theme Defaults */
-  --background: #0b1120;       /* Very dark navy */
-  --foreground: #f8fafc;       /* Slate 50 - sharp text */
-  --card: #151e32;            /* Slightly lighter navy for components */
-  --card-foreground: #f8fafc;
-  --primary: #3b82f6;         /* Blue 500 - interactive elements */
-  --primary-foreground: #ffffff;
-  --secondary: #1e293b;       /* Slate 800 */
-  --secondary-foreground: #f8fafc;
-  --border: #1e293b;          /* Border lines */
-  --ring: #3b82f6;            /* Focus rings */
+  /* Median Stratum — Black & Gold Theme */
+  --background: #0a0a0a;
+  --foreground: #e8e6e0;
+  
+  --card: #0f0f0f;
+  --card-foreground: #e8e6e0;
+  
+  --primary: #c8a96e;
+  --primary-foreground: #0a0a0a;
+  
+  --secondary: #111008;
+  --secondary-foreground: #a09880;
+  
+  --muted: #3a3830;
+  --muted-foreground: #7a7060;
+  
+  --accent: #1d9e75;
+  --accent-foreground: #e8e6e0;
+  
+  --border: rgba(200, 169, 110, 0.12);
+  --input: rgba(200, 169, 110, 0.08);
+  --ring: #c8a96e;
 }
 
 @theme inline {
@@ -23,7 +34,12 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
+  --color-input: var(--input);
   --color-ring: var(--ring);
   
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
