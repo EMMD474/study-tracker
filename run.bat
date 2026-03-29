@@ -1,4 +1,8 @@
 @echo off
-echo Starting Study Tracker Development Server...
+echo Starting Meridian Stratum Database...
+docker compose up -d
+
+echo Starting Meridian Stratum Development Server...
 pnpm dev
+
 pause
