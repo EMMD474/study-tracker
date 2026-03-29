@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import AuthLogo from "@/components/auth/AuthLogo";
 
+import AuthQuoteSlider from "@/components/auth/AuthQuoteSlider";
+
 interface AuthLayoutProps {
   children: ReactNode;
   /** Footer copyright year is computed automatically */
@@ -37,15 +39,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
         <AuthLogo />
 
         {/* Center quote / tagline */}
-        <div className="max-w-xs">
-          <div className="mb-6 h-px w-10 bg-[#c8a96e]/40" />
-          <blockquote className="text-3xl font-light leading-[1.3] tracking-[-0.02em] text-[#e8e6e0]">
-            &ldquo;Consistency is the foundation of every academic win.&rdquo;
-          </blockquote>
-          <p className="mt-5 text-xs tracking-widest text-[#3a3830] uppercase">
-            Daily progress, compounded.
-          </p>
-        </div>
+        <AuthQuoteSlider />
 
         {/* Bottom stat row */}
         <div className="flex gap-10">
