@@ -11,3 +11,72 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id         String  @id @default(cuid())
+  email      String  @unique
+  password   String?
+  providerId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relations
+  courses Course[]
+
+  @@index([email])
+}
+
+model Course {
+  id            String   @id @default(cuid())
+  userId        String
+  name          String
+  priority      Priority
+  allocatedTime Int // store in minutes for consistency
+
+  // relations
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studyTasks StudyTask[]
+  materials  Material[]
+
+  @@index([userId])
+}
+
+model StudyTask {
+  id          String     @id @default(cuid())
+  courseId    String
+  date        DateTime // represents the day
+  status      TaskStatus @default(PENDING)
+  completedAt DateTime?
+
+  // Relations
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([courseId])
+  @@index([date])
+}
+
+model Material {
+  id         String   @id @default(cuid())
+  courseId   String
+  fileUrl    String
+  fileName   String
+  uploadedAt DateTime @default(now())
+
+  // Relations
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([courseId])
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum TaskStatus {
+  PENDING
+  COMPLETED
+  MISSED
+}
