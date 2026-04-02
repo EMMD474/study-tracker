@@ -16,62 +16,81 @@
 
 ---
 
+## 🧰 Tech Stack
+
+- **Framework**: Next.js (App Router) + React 19
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4, MUI/Emotion
+- **ORM**: Prisma 7
+- **Database**: PostgreSQL 16 (via Docker)
+- **Package Manager**: pnpm
+
+---
+
 ## 🛠 Prerequisites
 
 - **Node.js** (v18+)
-- **pnpm** (preferred) or npm
+- **pnpm**
 - **Docker & Docker Compose** (for the PostgreSQL database)
 
 ---
 
 ## 🚀 Getting Started
 
-We've provided a set of scripts in the `scripts/` directory to manage your environment efficiently across Windows and Linux/macOS.
+Scripts in the `scripts/` directory manage your environment across Windows and Linux/macOS.
 
 ### 1. Initial Setup
-Run the setup script to install dependencies, generate the database schema, and prepare the environment.
+Installs dependencies, starts Docker, generates the Prisma client, and pushes the schema to the database.
 
-- **Windows**: `.\scripts\setup.bat`
 - **Linux/macOS**: `./scripts/setup.sh`
+- **Windows**: `.\scripts\setup.bat`
 
 ### 2. Run the Application
-This will start both the PostgreSQL database (via Docker) and the Next.js development server.
+Starts the PostgreSQL container and the Next.js development server.
 
-- **Windows**: `.\scripts\run.bat`
 - **Linux/macOS**: `./scripts/run.sh`
+- **Windows**: `.\scripts\run.bat`
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### 3. Stop Services
-Cleanly shut down the database container and terminate the dev server.
 
-- **Windows**: `.\scripts\stop.bat`
 - **Linux/macOS**: `./scripts/stop.sh`
+- **Windows**: `.\scripts\stop.bat`
+
+---
+
+## 🗄 Database
+
+The database runs as a Docker container (`study-tracker-db`, PostgreSQL 16, port 5432). Connection details are in `.env`.
+
+Useful Prisma commands:
+
+```bash
+npx prisma generate       # Regenerate the Prisma client
+npx prisma db push        # Sync schema changes to the database
+npx prisma migrate dev    # Create and apply a named migration
+npx prisma studio         # Open the Prisma data browser
+```
 
 ---
 
 ## 📦 Project Structure
 
-- `app/`: Next.js App Router (pages, layouts, globals).
-- `components/auth/`: Reusable, themed authentication components.
-- `scripts/`: Cross-platform utility scripts for environment management.
-- `docker-compose.yml`: Database infrastructure definition.
-- `design.md`: Core system design and roadmap.
+- `app/` — Next.js App Router (pages, layouts, globals)
+- `components/auth/` — Reusable, themed authentication components
+- `prisma/` — Database schema and migrations
+- `scripts/` — Cross-platform utility scripts for environment management
+- `docker-compose.yml` — Database infrastructure definition
+- `design.md` — Core system design and roadmap
 
 ---
 
 ## 🛰 Deployment
 
-The `scripts/deploy` script automates the build verification and Git merging workflow:
+The `scripts/deploy` script automates build verification and the Git merge workflow:
 
 1. Runs `pnpm build` to check for errors.
 2. Pushes the current branch to `origin`.
 3. Merges the current branch into `main`.
 4. Returns you to your working branch.
-
----
-
-## Learn More
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Docker Compose Documentation](https://docs.docker.com/compose/) - learn about managing multi-container applications.
