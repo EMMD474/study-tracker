@@ -6,6 +6,7 @@ import AuthLayout from "@/components/auth/AuthLayout";
 import FormField from "@/components/auth/FormField";
 import PasswordInput from "@/components/auth/PasswordInput";
 import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
+import SignIn from "@/components/auth/SignIn";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
@@ -71,6 +72,10 @@ export default function RegisterPage() {
         <div className="h-px flex-1 bg-[#c8a96e]/8" />
         <span className="text-xs text-[#3a3830]">or</span>
         <div className="h-px flex-1 bg-[#c8a96e]/8" />
+      </div>
+
+      <div className="mb-8">
+        <SignIn />
       </div>
 
       {/* Login link */}
