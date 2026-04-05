@@ -6,6 +6,18 @@ import { compare } from "bcryptjs"
 import { signInSchema } from "@/lib/zod"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider === "google" && user.email) {
+        await prisma.user.upsert({
+          where: { email: user.email },
+          update: { providerId: account.providerAccountId },
+          create: { email: user.email, providerId: account.providerAccountId },
+        })
+      }
+      return true
+    },
+  },
   providers: [
     Google,
     Credentials({
