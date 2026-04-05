@@ -1,14 +1,9 @@
-import { signIn } from "@/auth"
 import Button from "@mui/material/Button"
+import { signInWithGoogle } from "./actions"
  
 export default function SignIn() {
   return (
-    <form
-      action={async () => {
-        "use server"
-        await signIn("google")
-      }}
-    >
+    <form action={signInWithGoogle}>
       <Button
         type="submit"
         fullWidth
