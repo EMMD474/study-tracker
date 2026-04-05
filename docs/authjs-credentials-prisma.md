@@ -121,6 +121,23 @@ import { compare } from "bcryptjs"
 import { signInSchema } from "@/lib/zod"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  callbacks: {
+    async signIn({ user, account }) {
+      // Upsert Google users into the DB on every sign-in.
+      // Auth.js does NOT do this automatically unless you use PrismaAdapter
+      // (which requires additional schema models: Account, Session, VerificationToken).
+      // Since this project uses a custom schema, we handle it manually here.
+      if (account?.provider === "google" && user.email) {
+        await prisma.user.upsert({
+          where: { email: user.email },
+          update: { providerId: account.providerAccountId },
+          create: { email: user.email, providerId: account.providerAccountId },
+          // password is left null — Credentials authorize guards against this
+        })
+      }
+      return true
+    },
+  },
   providers: [
     Google,
     Credentials({
@@ -229,3 +246,4 @@ AUTH_GOOGLE_SECRET=...
 | Multiple DB connections in dev | No singleton | Use `globalForPrisma` pattern in `lib/prisma.ts` |
 | AuthJS JWT vs DB sessions | Credentials only supports JWT sessions | Do not configure `session: { strategy: "database" }` with Credentials |
 | `authorize` returning full Prisma row | Extra fields leak into JWT | Return only `{ id, email }` |
+| Google users never saved to DB | No `PrismaAdapter` configured | Use `signIn` callback to `upsert` on `account.provider === "google"` |
