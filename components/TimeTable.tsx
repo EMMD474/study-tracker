@@ -98,74 +98,127 @@ const TimeTable = ({ data }: { data: TimetableRow[] }) => {
     .toLowerCase();
 
   return (
-    <div className="w-full overflow-x-auto rounded-xl bg-[#0f0e0c]/50">
-      <table className="w-full min-w-[1000px] border-collapse text-sm">
-        {/* Header */}
-        <thead>
-          <tr>
-            {DAYS.map((day) => {
-              const isToday = day.toLowerCase() === today;
-              return (
-                <th
-                  key={day}
-                  className={`border-b border-white/[0.04] px-4 py-5 text-center transition-colors relative ${
-                    isToday ? "bg-white/[0.02]" : ""
-                  }`}
-                >
-                  <div className="flex flex-col items-center gap-2">
-                    {isToday && (
-                      <span className="absolute top-0 h-px w-16 bg-gradient-to-r from-transparent via-[#c8a96e] to-transparent" />
-                    )}
-                    <span className={`text-[11px] font-bold uppercase tracking-[0.15em] ${
-                      isToday ? "text-[#c8a96e]" : "text-[#6a655c]"
-                    }`}>
-                      {day}
-                    </span>
-                    {isToday && (
-                      <span className="mt-1 h-1 w-1 animate-pulse rounded-full bg-[#c8a96e]" />
-                    )}
-                  </div>
-                </th>
-              );
-            })}
-          </tr>
-        </thead>
+    <>
+      {/* Mobile View (Cards) */}
+      <div className="flex flex-col gap-5 lg:hidden p-1">
+        {DAYS.map((day) => {
+          const key = day.toLowerCase() as DayKey;
+          const isToday = day.toLowerCase() === today;
 
-        {/* Body */}
-        <tbody>
-          {data.map((row, index) => (
-            <tr
-              key={row.id}
-              className={`group/row transition-colors ${
-                index === data.length - 1 ? "" : "border-b border-white/[0.02]"
+          return (
+            <div
+              key={day}
+              className={`flex flex-col overflow-hidden rounded-2xl border transition-all ${
+                isToday
+                  ? "border-[#c8a96e]/30 bg-[#c8a96e]/5 shadow-[0_0_20px_rgba(200,169,110,0.05)]"
+                  : "border-white/[0.04] bg-[#121110]/50"
               }`}
             >
-              {DAYS.map((day) => {
-                const key = day.toLowerCase() as DayKey;
-                const isToday = day.toLowerCase() === today;
-                return (
-                  <td
-                    key={day}
-                    className={`relative p-3 align-top transition-colors ${
-                      isToday ? "bg-white/[0.015]" : "group-hover/row:bg-white/[0.005]"
+              {/* Day Header */}
+              <div className={`relative flex items-center justify-between border-b border-white/[0.04] px-5 py-3.5 ${isToday ? "bg-[#c8a96e]/10" : ""}`}>
+                {isToday && (
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#c8a96e]/50 to-transparent" />
+                )}
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`text-xs font-bold uppercase tracking-[0.2em] ${
+                      isToday ? "text-[#c8a96e]" : "text-[#8a857a]"
                     }`}
                   >
-                    {/* Today Column Highlight Line */}
-                    {isToday && (
-                      <div className="pointer-events-none absolute inset-y-0 left-0 w-px bg-gradient-to-b from-[#c8a96e]/10 via-[#c8a96e]/5 to-transparent" />
-                    )}
-                    {isToday && (
-                      <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-gradient-to-b from-[#c8a96e]/10 via-[#c8a96e]/5 to-transparent" />
-                    )}
-                    <SubjectCell subject={row[key]} />
-                  </td>
+                    {day}
+                  </span>
+                  {isToday && (
+                    <span className="flex h-1.5 w-1.5 animate-pulse rounded-full bg-[#c8a96e]" />
+                  )}
+                </div>
+                {isToday && (
+                  <span className="rounded-full bg-[#c8a96e]/20 px-2.5 py-0.5 text-[9px] font-bold tracking-widest text-[#c8a96e]">
+                    TODAY
+                  </span>
+                )}
+              </div>
+
+              {/* Day Entries */}
+              <div className="flex flex-col gap-2.5 p-3.5">
+                {data.map((row) => (
+                  <SubjectCell key={row.id} subject={row[key]} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Desktop View (Table) */}
+      <div className="hidden w-full overflow-x-auto rounded-xl bg-[#0f0e0c]/50 lg:block">
+        <table className="w-full min-w-[1000px] border-collapse text-sm">
+          {/* Header */}
+          <thead>
+            <tr>
+              {DAYS.map((day) => {
+                const isToday = day.toLowerCase() === today;
+                return (
+                  <th
+                    key={day}
+                    className={`relative border-b border-white/[0.04] px-4 py-5 text-center transition-colors ${
+                      isToday ? "bg-white/[0.02]" : ""
+                    }`}
+                  >
+                    <div className="flex flex-col items-center gap-2">
+                      {isToday && (
+                        <span className="absolute top-0 h-px w-16 bg-gradient-to-r from-transparent via-[#c8a96e] to-transparent" />
+                      )}
+                      <span className={`text-[11px] font-bold uppercase tracking-[0.15em] ${
+                        isToday ? "text-[#c8a96e]" : "text-[#6a655c]"
+                      }`}>
+                        {day}
+                      </span>
+                      {isToday && (
+                        <span className="mt-1 h-1 w-1 animate-pulse rounded-full bg-[#c8a96e]" />
+                      )}
+                    </div>
+                  </th>
                 );
               })}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+
+          {/* Body */}
+          <tbody>
+            {data.map((row, index) => (
+              <tr
+                key={row.id}
+                className={`group/row transition-colors ${
+                  index === data.length - 1 ? "" : "border-b border-white/[0.02]"
+                }`}
+              >
+                {DAYS.map((day) => {
+                  const key = day.toLowerCase() as DayKey;
+                  const isToday = day.toLowerCase() === today;
+                  return (
+                    <td
+                      key={day}
+                      className={`relative p-3 align-top transition-colors ${
+                        isToday ? "bg-white/[0.015]" : "group-hover/row:bg-white/[0.005]"
+                      }`}
+                    >
+                      {/* Today Column Highlight Line */}
+                      {isToday && (
+                        <div className="pointer-events-none absolute inset-y-0 left-0 w-px bg-gradient-to-b from-[#c8a96e]/10 via-[#c8a96e]/5 to-transparent" />
+                      )}
+                      {isToday && (
+                        <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-gradient-to-b from-[#c8a96e]/10 via-[#c8a96e]/5 to-transparent" />
+                      )}
+                      <SubjectCell subject={row[key]} />
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 
