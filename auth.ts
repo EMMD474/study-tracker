@@ -9,11 +9,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async signIn({ user, account }) {
       if (account?.provider === "google" && user.email) {
-        await prisma.user.upsert({
-          where: { email: user.email },
-          update: { providerId: account.providerAccountId },
-          create: { email: user.email, providerId: account.providerAccountId },
-        })
+        try {
+          await prisma.user.upsert({
+            where: { email: user.email },
+            update: { providerId: account.providerAccountId },
+            create: { email: user.email, providerId: account.providerAccountId },
+          })
+        } catch (err) {
+          console.error("[auth] failed to upsert Google user:", err)
+          return false
+        }
       }
       return true
     },
