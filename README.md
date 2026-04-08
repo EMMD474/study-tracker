@@ -133,7 +133,11 @@ app/
   dashboard/        — Main dashboard (in progress)
   courses/          — Course management (in progress)
   timetable/        — Public timetable view
-components/auth/    — Reusable auth UI components
+components/
+  auth/             — Reusable auth UI components
+  TopNav.tsx        — Top navigation bar
+  TimeTable.tsx     — Timetable view component
+  ComingSoonBanner.tsx — Banner for pages under construction
 lib/
   prisma.ts         — PrismaClient singleton (PrismaPg adapter)
   zod.ts            — Shared validation schemas
