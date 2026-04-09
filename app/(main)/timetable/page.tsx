@@ -26,7 +26,7 @@ const timeTableData = [
 
 const TimetablePage = () => {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#0a0a0a] px-6 py-12 sm:px-12 lg:px-20 lg:py-16 selection:bg-[#c8a96e]/30">
+    <div className="relative min-h-0 flex-1 overflow-x-hidden bg-[#0a0a0a] px-6 py-12 sm:px-12 lg:px-20 lg:py-16 selection:bg-[#c8a96e]/30">
       {/* Ambient Background Effects */}
       <div className="pointer-events-none absolute -left-[10%] -top-[20%] h-[600px] w-[600px] rounded-full bg-gradient-to-br from-[#c8a96e]/[0.035] to-transparent blur-[120px]" />
       <div className="pointer-events-none absolute -bottom-[20%] -right-[10%] h-[600px] w-[600px] rounded-full bg-gradient-to-tl from-[#5b8fc9]/[0.035] to-transparent blur-[120px]" />
