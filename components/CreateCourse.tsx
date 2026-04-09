@@ -10,6 +10,50 @@ import {
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
+/** Matches globals.css Black & Gold — MUI defaults assume a light paper. */
+const formTextFieldSx = {
+  "& .MuiOutlinedInput-root": {
+    color: "var(--foreground)",
+    backgroundColor: "var(--input)",
+    "& fieldset": {
+      borderColor: "rgba(200, 169, 110, 0.28)",
+    },
+    "&:hover fieldset": {
+      borderColor: "rgba(200, 169, 110, 0.45)",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "var(--primary)",
+      borderWidth: 1,
+    },
+    "&.Mui-error fieldset": {
+      borderColor: "rgba(220, 90, 90, 0.85)",
+    },
+  },
+  "& .MuiOutlinedInput-input": {
+    color: "var(--foreground)",
+    caretColor: "var(--primary)",
+    "&::placeholder": {
+      color: "var(--muted-foreground)",
+      opacity: 1,
+    },
+  },
+  "& .MuiInputLabel-root": {
+    color: "var(--muted-foreground)",
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: "var(--primary)",
+  },
+  "& .MuiInputLabel-root.Mui-error": {
+    color: "rgba(220, 120, 120, 0.95)",
+  },
+  "& .MuiFormHelperText-root": {
+    color: "var(--muted-foreground)",
+  },
+  "& .MuiFormHelperText-root.Mui-error": {
+    color: "rgba(220, 120, 120, 0.95)",
+  },
+} as const;
+
 type CreateCourseProps = {
   open: boolean;
   onClose: () => void;
@@ -70,19 +114,46 @@ export default function CreateCourse({ open, onClose }: CreateCourseProps) {
           <Close />
         </IconButton>
       </DialogTitle>
-      <DialogContent sx={{ pt: 3 }}>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <TextField label="Course Name" name="name" required fullWidth autoFocus />
+      <DialogContent sx={{ pt: 3, color: "var(--foreground)" }}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4">
           <TextField
-            label="Course Description"
+            label="Course name"
+            name="name"
+            required
+            fullWidth
+            autoFocus
+            variant="outlined"
+            sx={formTextFieldSx}
+            className="mt-20"
+          />
+          <TextField
+            label="Course description"
             name="description"
             required
             fullWidth
             multiline
             minRows={3}
+            variant="outlined"
+            sx={formTextFieldSx}
           />
-          <Button type="submit" variant="contained" color="secondary" sx={{ mt: 1 }}>
-            Create Course
+          <Button
+            type="submit"
+            variant="contained"
+            disableElevation
+            sx={{
+              mt: 1,
+              py: 1.25,
+              fontWeight: 600,
+              textTransform: "none",
+              bgcolor: "var(--primary)",
+              color: "var(--primary-foreground)",
+              "&:hover": {
+                bgcolor: "var(--primary)",
+                filter: "brightness(1.08)",
+              },
+            }}
+          >
+            Create course
           </Button>
         </form>
       </DialogContent>
