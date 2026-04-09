@@ -55,7 +55,6 @@ const formTextFieldSx = {
   },
 } as const;
 
-/** Dialog + backdrop timing; Grow fades/scales the paper stack in sync with the scrim. */
 const dialogTransitionMs = { enter: 420, exit: 240 } as const;
 const dialogEasing = {
   enter: "cubic-bezier(0.22, 1, 0.36, 1)",
@@ -91,7 +90,7 @@ export default function CreateCourse({ open, onClose }: CreateCourseProps) {
         },
         backdrop: {
           sx: {
-            backgroundColor: "rgba(0, 0, 0, 0.55)",
+            backgroundColor: "rgba(37, 37, 37, 0.55)",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
           },
