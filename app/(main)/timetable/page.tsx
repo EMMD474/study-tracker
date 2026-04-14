@@ -26,14 +26,14 @@ const timeTableData = [
 
 const TimetablePage = () => {
   return (
-    <div className="relative min-h-0 flex-1 overflow-x-hidden bg-[#0a0a0a] px-6 py-12 sm:px-12 lg:px-20 lg:py-16 selection:bg-[#c8a96e]/30">
+    <div className="relative min-h-0 flex-1 bg-[#0a0a0a] px-4 py-8 sm:px-8 lg:px-12 lg:py-12 selection:bg-[#c8a96e]/30 overflow-y-auto">
       {/* Ambient Background Effects */}
       <div className="pointer-events-none absolute -left-[10%] -top-[20%] h-[600px] w-[600px] rounded-full bg-gradient-to-br from-[#c8a96e]/[0.035] to-transparent blur-[120px]" />
       <div className="pointer-events-none absolute -bottom-[20%] -right-[10%] h-[600px] w-[600px] rounded-full bg-gradient-to-tl from-[#5b8fc9]/[0.035] to-transparent blur-[120px]" />
 
-      <div className="relative z-10 mx-auto max-w-[1300px]">
+      <div className="relative z-10 mx-auto max-w-[1400px]">
         {/* Header Section */}
-        <div className="mb-14 flex flex-col gap-8 xl:flex-row xl:items-end xl:justify-between">
+        <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <div className="mb-4 flex items-center gap-3">
               <span className="flex h-1.5 w-1.5 animate-pulse rounded-full bg-[#c8a96e]" />
@@ -41,17 +41,17 @@ const TimetablePage = () => {
                 Academic Schedule
               </p>
             </div>
-            <h1 className="text-4xl font-light tracking-tight text-[#f4f2ec] sm:text-5xl">
+            <h1 className="text-3xl font-light tracking-tight text-[#f4f2ec] sm:text-4xl lg:text-5xl">
               Study Timetable
             </h1>
-            <p className="mt-5 text-sm leading-relaxed text-[#7a756b]">
+            <p className="mt-4 text-sm leading-relaxed text-[#7a756b]">
               Your structured weekly plan for mastering core subjects. Stick to the 
               routine to build consistency and easily track your study goals.
             </p>
           </div>
           
           {/* Legend */}
-          <div className="flex flex-wrap gap-3 xl:max-w-[450px] xl:justify-end">
+          <div className="flex flex-wrap gap-2 lg:gap-3 xl:max-w-[450px] xl:justify-end">
             {[
               { label: "Advanced Databases", color: "bg-[#c8a96e]" },
               { label: "Computer Security", color: "bg-[#1d9e75]" },
@@ -60,13 +60,13 @@ const TimetablePage = () => {
             ].map((item) => (
               <div
                 key={item.label}
-                className="group flex cursor-default items-center gap-2.5 rounded-full border border-white/[0.04] bg-white/[0.015] px-3.5 py-1.5 backdrop-blur-md transition-all duration-300 hover:border-white/[0.08] hover:bg-white/[0.03] hover:shadow-lg hover:shadow-black/20"
+                className="group flex cursor-default items-center gap-2.5 rounded-full border border-white/[0.04] bg-white/[0.015] px-3 py-1 backdrop-blur-md transition-all duration-300 hover:border-white/[0.08] hover:bg-white/[0.03] hover:shadow-lg hover:shadow-black/20"
               >
                 <div className="relative flex h-2 w-2 items-center justify-center">
                   <span className={`absolute h-full w-full rounded-full ${item.color} opacity-40 blur-[2px] transition-all group-hover:opacity-80 group-hover:scale-150`} />
                   <span className={`relative h-1.5 w-1.5 rounded-full ${item.color}`} />
                 </div>
-                <span className="text-[11px] font-medium tracking-wider text-[#8a857a] transition-colors group-hover:text-[#d4d0c6]">
+                <span className="text-[10px] lg:text-[11px] font-medium tracking-wider text-[#8a857a] transition-colors group-hover:text-[#d4d0c6]">
                   {item.label}
                 </span>
               </div>
@@ -74,8 +74,8 @@ const TimetablePage = () => {
           </div>
         </div>
 
-        {/* Table Container Glow Wrap */}
-        <div className="relative rounded-2xl border border-white/[0.04] bg-[#0d0c0b]/80 p-2 shadow-2xl backdrop-blur-xl">
+        {/* Table Container */}
+        <div className="relative overflow-hidden rounded-2xl border border-white/[0.04] bg-[#0d0c0b]/80 shadow-2xl backdrop-blur-xl">
           {/* Top highlight glare */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-50" />
           

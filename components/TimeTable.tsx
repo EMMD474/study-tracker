@@ -70,18 +70,18 @@ const DEFAULT_COLOR = {
 };
 
 function SubjectCell({ subject }: { subject: string }) {
-  if (!subject) return null;
+  if (!subject) return <div className="min-h-[4rem]" />;
   const color = SUBJECT_COLORS[subject] ?? DEFAULT_COLOR;
   
   return (
     <div
-      className={`group relative flex h-full min-h-[5.5rem] w-full flex-col justify-center overflow-hidden rounded-xl border border-transparent px-4 py-3 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:z-10 bg-gradient-to-br from-transparent to-black/20 ${color.hoverBorder} ${color.hoverShadow} ${color.bg}`}
+      className={`group relative flex min-h-[4rem] w-full flex-col justify-center rounded-xl border border-transparent px-3 py-2.5 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:z-10 bg-gradient-to-br from-transparent to-black/20 ${color.hoverBorder} ${color.hoverShadow} ${color.bg}`}
     >
       {/* Accent Line */}
       <div className={`absolute left-0 top-0 h-full w-1 ${color.dot} opacity-80 transition-transform duration-300 group-hover:scale-y-110`} />
       
-      <div className="flex w-full items-start gap-3 pl-1">
-        <span className={`text-[13px] font-semibold leading-relaxed tracking-wide ${color.text} relative z-10 transition-colors duration-300 group-hover:brightness-125`}>
+      <div className="flex w-full items-start gap-2 pl-1">
+        <span className={`text-[11px] lg:text-[13px] font-semibold leading-snug tracking-wide ${color.text} relative z-10 transition-colors duration-300 group-hover:brightness-125`}>
           {subject}
         </span>
       </div>
@@ -151,7 +151,7 @@ const TimeTable = ({ data }: { data: TimetableRow[] }) => {
 
       {/* Desktop View (Table) */}
       <div className="hidden w-full overflow-x-auto rounded-xl bg-[#0f0e0c]/50 lg:block">
-        <table className="w-full min-w-[1000px] border-collapse text-sm">
+        <table className="w-full min-w-[800px] xl:min-w-[1000px] border-collapse text-sm">
           {/* Header */}
           <thead>
             <tr>
@@ -160,7 +160,7 @@ const TimeTable = ({ data }: { data: TimetableRow[] }) => {
                 return (
                   <th
                     key={day}
-                    className={`relative border-b border-white/[0.04] px-4 py-5 text-center transition-colors ${
+                    className={`relative border-b border-white/[0.04] px-2 lg:px-4 py-4 lg:py-5 text-center transition-colors ${
                       isToday ? "bg-white/[0.02]" : ""
                     }`}
                   >
@@ -198,7 +198,7 @@ const TimeTable = ({ data }: { data: TimetableRow[] }) => {
                   return (
                     <td
                       key={day}
-                      className={`relative p-3 align-top transition-colors ${
+                      className={`relative p-2 lg:p-3 align-top transition-colors ${
                         isToday ? "bg-white/[0.015]" : "group-hover/row:bg-white/[0.005]"
                       }`}
                     >
