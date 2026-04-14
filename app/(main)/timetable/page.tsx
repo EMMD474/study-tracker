@@ -26,7 +26,7 @@ const timeTableData = [
 
 const TimetablePage = () => {
   return (
-    <div className="relative min-h-0 flex-1 bg-[#0a0a0a] px-4 py-8 sm:px-8 lg:px-12 lg:py-12 selection:bg-[#c8a96e]/30 overflow-y-auto">
+    <div className="relative flex flex-col h-full min-h-0 bg-[#0a0a0a] px-4 py-8 sm:px-8 lg:px-12 lg:py-12 selection:bg-[#c8a96e]/30 overflow-y-auto">
       {/* Ambient Background Effects */}
       <div className="pointer-events-none absolute -left-[10%] -top-[20%] h-[600px] w-[600px] rounded-full bg-gradient-to-br from-[#c8a96e]/[0.035] to-transparent blur-[120px]" />
       <div className="pointer-events-none absolute -bottom-[20%] -right-[10%] h-[600px] w-[600px] rounded-full bg-gradient-to-tl from-[#5b8fc9]/[0.035] to-transparent blur-[120px]" />
@@ -45,11 +45,11 @@ const TimetablePage = () => {
               Study Timetable
             </h1>
             <p className="mt-4 text-sm leading-relaxed text-[#7a756b]">
-              Your structured weekly plan for mastering core subjects. Stick to the 
+              Your structured weekly plan for mastering core subjects. Stick to the
               routine to build consistency and easily track your study goals.
             </p>
           </div>
-          
+
           {/* Legend */}
           <div className="flex flex-wrap gap-2 lg:gap-3 xl:max-w-[450px] xl:justify-end">
             {[
@@ -75,10 +75,14 @@ const TimetablePage = () => {
         </div>
 
         {/* Table Container */}
-        <div className="relative overflow-hidden rounded-2xl border border-white/[0.04] bg-[#0d0c0b]/80 shadow-2xl backdrop-blur-xl">
+        // Change this wrapper:
+
+
+        // To this — move overflow-x-auto here, keep the visual rounding:
+        <div className="relative overflow-x-auto rounded-2xl border border-white/[0.04] bg-[#0d0c0b]/80 shadow-2xl backdrop-blur-xl">
           {/* Top highlight glare */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-50" />
-          
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-50 z-10" />
+
           <TimeTable data={timeTableData} />
         </div>
 

@@ -150,7 +150,7 @@ const TimeTable = ({ data }: { data: TimetableRow[] }) => {
       </div>
 
       {/* Desktop View (Table) */}
-      <div className="hidden w-full overflow-x-auto rounded-xl bg-[#0f0e0c]/50 lg:block">
+      <div className="hidden w-full rounded-xl bg-[#0f0e0c]/50 lg:block">
         <table className="w-full min-w-[800px] xl:min-w-[1000px] border-collapse text-sm">
           {/* Header */}
           <thead>
