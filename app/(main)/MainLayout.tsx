@@ -14,7 +14,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   return (
     <main className="flex min-h-0 flex-1 flex-col">
       <TopNav />
-      <div className="flex min-h-0 w-full flex-col px-4 py-6 sm:px-6 lg:py-8">
+      <div className="flex min-h-0 w-full flex-col py-6 lg:py-8">
         {children}
       </div>
       <CreateCourse

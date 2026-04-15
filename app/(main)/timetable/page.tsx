@@ -26,12 +26,14 @@ const timeTableData = [
 
 const TimetablePage = () => {
   return (
-    <div className="relative flex flex-col h-full min-h-0 bg-[#0a0a0a] px-4 py-8 sm:px-8 lg:px-12 lg:py-12 selection:bg-[#c8a96e]/30 overflow-y-auto">
+    <div className="relative flex-1 bg-[#0a0a0a] py-8 lg:py-12 selection:bg-[#c8a96e]/30 overflow-x-hidden">
       {/* Ambient Background Effects */}
-      <div className="pointer-events-none absolute -left-[10%] -top-[20%] h-[600px] w-[600px] rounded-full bg-gradient-to-br from-[#c8a96e]/[0.035] to-transparent blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-[20%] -right-[10%] h-[600px] w-[600px] rounded-full bg-gradient-to-tl from-[#5b8fc9]/[0.035] to-transparent blur-[120px]" />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-[10%] -top-[20%] h-[600px] w-[600px] rounded-full bg-gradient-to-br from-[#c8a96e]/[0.035] to-transparent blur-[120px]" />
+        <div className="absolute -bottom-[20%] -right-[10%] h-[600px] w-[600px] rounded-full bg-gradient-to-tl from-[#5b8fc9]/[0.035] to-transparent blur-[120px]" />
+      </div>
 
-      <div className="relative z-10 mx-auto max-w-[1400px]">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-8 lg:px-12">
         {/* Header Section */}
         <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
@@ -75,11 +77,7 @@ const TimetablePage = () => {
         </div>
 
         {/* Table Container */}
-        // Change this wrapper:
-
-
-        // To this — move overflow-x-auto here, keep the visual rounding:
-        <div className="relative overflow-x-auto rounded-2xl border border-white/[0.04] bg-[#0d0c0b]/80 shadow-2xl backdrop-blur-xl">
+        <div className="relative overflow-x-auto overflow-y-hidden rounded-2xl border border-white/[0.04] bg-[#0d0c0b]/80 shadow-2xl backdrop-blur-xl">
           {/* Top highlight glare */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-50 z-10" />
 
