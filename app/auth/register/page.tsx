@@ -25,8 +25,10 @@ export default function RegisterPage() {
         router.push("/auth/login")
       })
       .catch((err) => {
-        console.error("Registration failed:", err)
-      })
+        const errorMsg = err.response?.data?.error || "Failed to create account. Please try again.";
+        toast.error(typeof errorMsg === 'string' ? errorMsg : "Please check your inputs.");
+        console.error("Registration failed:", err);
+      });
   };
 
   return (

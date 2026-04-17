@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import "./globals.css";
+import { Toaster } from "sonner";
 import TopNav from "@/components/TopNav";
 
 const geistSans = Geist({
@@ -33,6 +34,7 @@ export default function RootLayout({
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           {/* <TopNav /> */}
           {children}
+          <Toaster richColors position="top-center" closeButton />
         </AppRouterCacheProvider>
       </body>
     </html>

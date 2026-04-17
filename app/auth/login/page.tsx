@@ -7,14 +7,37 @@ import FormField from "@/components/auth/FormField";
 import PasswordInput from "@/components/auth/PasswordInput";
 import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
 import SignIn from "@/components/auth/SignIn";
+import { signIn } from "next-auth/react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // handle login logic
+    
+    const toastId = toast.loading("Signing in...");
+    
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        toast.error("Invalid email or password", { id: toastId });
+      } else {
+        toast.success("Welcome back!", { id: toastId });
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      toast.error("An unexpected error occurred", { id: toastId });
+      console.error("Login error:", error);
+    }
   };
 
   return (
