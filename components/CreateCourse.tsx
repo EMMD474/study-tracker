@@ -1,15 +1,20 @@
-"use client";
-
 import {
   Button,
+  CircularProgress,
   Dialog,
   DialogContent,
   DialogTitle,
+  FormControl,
   Grow,
   IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { useState } from "react";
+import { courseApi } from "@/lib/api";
 
 /** Matches globals.css Black & Gold — MUI defaults assume a light paper. */
 const formTextFieldSx = {
@@ -64,22 +69,39 @@ const dialogEasing = {
 type CreateCourseProps = {
   open: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
 };
 
-export default function CreateCourse({ open, onClose }: CreateCourseProps) {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+export default function CreateCourse({ open, onClose, onSuccess }: CreateCourseProps) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    setError(null);
+
     const formData = new FormData(e.target as HTMLFormElement);
     const name = formData.get("name") as string;
-    const description = formData.get("description") as string;
-    console.log(name, description);
-    onClose();
+    const priority = formData.get("priority") as string;
+    const allocatedTime = parseInt(formData.get("allocatedTime") as string);
+
+    try {
+      await courseApi.create({ name, priority, allocatedTime });
+      onSuccess?.();
+      onClose();
+    } catch (err: any) {
+      console.error("Failed to create course:", err);
+      setError(err.response?.data?.error || "Failed to create course. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <Dialog
       open={open}
-      onClose={() => onClose()}
+      onClose={() => !loading && onClose()}
       maxWidth="sm"
       fullWidth
       slots={{ transition: Grow }}
@@ -122,6 +144,7 @@ export default function CreateCourse({ open, onClose }: CreateCourseProps) {
         <IconButton
           type="button"
           onClick={() => onClose()}
+          disabled={loading}
           aria-label="Close"
           sx={{ color: "var(--muted-foreground)" }}
         >
@@ -129,33 +152,70 @@ export default function CreateCourse({ open, onClose }: CreateCourseProps) {
         </IconButton>
       </DialogTitle>
       <DialogContent sx={{ pt: 3, color: "var(--foreground)" }}>
-        <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-4">
+        {error && (
+          <div className="mb-4 rounded border border-red-900/50 bg-red-900/10 p-3 text-sm text-red-400">
+            {typeof error === "object" ? JSON.stringify(error) : error}
+          </div>
+        )}
+        <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-5">
           <TextField
             label="Course name"
             name="name"
             required
             fullWidth
             autoFocus
+            disabled={loading}
             variant="outlined"
             sx={formTextFieldSx}
           />
-          <TextField
-            label="Course description"
-            name="description"
-            required
-            fullWidth
-            multiline
-            minRows={3}
-            variant="outlined"
-            sx={formTextFieldSx}
-          />
+          
+          <div className="flex gap-4">
+            <FormControl fullWidth required sx={formTextFieldSx}>
+              <InputLabel id="priority-label">Priority</InputLabel>
+              <Select
+                labelId="priority-label"
+                name="priority"
+                label="Priority"
+                defaultValue="MEDIUM"
+                disabled={loading}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      bgcolor: "#0f0f0f",
+                      border: "1px solid rgba(200, 169, 110, 0.15)",
+                      color: "var(--foreground)",
+                    },
+                  },
+                }}
+              >
+                <MenuItem value="LOW">Low</MenuItem>
+                <MenuItem value="MEDIUM">Medium</MenuItem>
+                <MenuItem value="HIGH">High</MenuItem>
+              </Select>
+            </FormControl>
+
+            <TextField
+              label="Allocated Time (mins)"
+              name="allocatedTime"
+              type="number"
+              required
+              fullWidth
+              disabled={loading}
+              defaultValue={60}
+              variant="outlined"
+              sx={formTextFieldSx}
+              inputProps={{ min: 15, max: 1440 }}
+            />
+          </div>
+
           <Button
             type="submit"
             variant="contained"
             disableElevation
+            disabled={loading}
             sx={{
               mt: 1,
-              py: 1.25,
+              py: 1.5,
               fontWeight: 600,
               textTransform: "none",
               bgcolor: "var(--primary)",
@@ -164,9 +224,13 @@ export default function CreateCourse({ open, onClose }: CreateCourseProps) {
                 bgcolor: "var(--primary)",
                 filter: "brightness(1.08)",
               },
+              "&.Mui-disabled": {
+                bgcolor: "rgba(200, 169, 110, 0.12)",
+                color: "rgba(200, 169, 110, 0.35)",
+              },
             }}
           >
-            Create course
+            {loading ? <CircularProgress size={24} color="inherit" /> : "Create course"}
           </Button>
         </form>
       </DialogContent>

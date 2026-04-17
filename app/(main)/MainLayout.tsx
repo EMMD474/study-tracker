@@ -2,12 +2,31 @@
 
 import { Fab} from "@mui/material";
 import { Add } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateCourse from "@/components/CreateCourse";
 import TopNav from "@/components/TopNav";
+import { courseApi } from "@/lib/api";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   const [openCreateCourse, setOpenCreateCourse] = useState(false)
+  const [courses, setCourses] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  const fetchCourses = async () => {
+    try {
+      const data = await courseApi.list()
+      setCourses(data)
+    } catch (error) {
+      console.error("Failed to fetch courses:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchCourses()
+  }, [])
+
   const handleCreateCourse = () => {
     setOpenCreateCourse(true)
   }
@@ -20,6 +39,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       <CreateCourse
         open={openCreateCourse}
         onClose={() => setOpenCreateCourse(false)}
+        onSuccess={fetchCourses}
       />
       <Fab
         color="secondary"
