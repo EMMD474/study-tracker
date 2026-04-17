@@ -15,6 +15,7 @@ import {
 import { Close } from "@mui/icons-material";
 import { useState } from "react";
 import { courseApi } from "@/lib/api";
+import { toast } from "sonner";
 
 /** Matches globals.css Black & Gold — MUI defaults assume a light paper. */
 const formTextFieldSx = {
@@ -88,11 +89,14 @@ export default function CreateCourse({ open, onClose, onSuccess }: CreateCourseP
 
     try {
       await courseApi.create({ name, priority, allocatedTime });
+      toast.success("Course created successfully!");
       onSuccess?.();
       onClose();
     } catch (err: any) {
       console.error("Failed to create course:", err);
-      setError(err.response?.data?.error || "Failed to create course. Please try again.");
+      const errorMsg = err.response?.data?.error || "Failed to create course. Please try again.";
+      toast.error(typeof errorMsg === 'string' ? errorMsg : "Please check your inputs.");
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
