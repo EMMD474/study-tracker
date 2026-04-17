@@ -109,7 +109,7 @@ export default function Home() {
 
       {/* ── Feature strip — 3 columns ── */}
       <section className="relative z-10 border-t border-[#c8a96e]/8 px-6 py-16 sm:px-12">
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-px sm:grid-cols-3">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-px sm:grid-cols-3 gap-x-4">
           {[
             {
               number: "01",
