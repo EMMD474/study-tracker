@@ -1,11 +1,11 @@
 import { prisma } from "@/lib/prisma"
 import { hash } from "bcryptjs"
-import { signInSchema } from "@/lib/zod"
+import { registerSchema } from "@/lib/zod"
 
 export async function POST(request: Request) {
   const body = await request.json()
 
-  const parsed = signInSchema.safeParse(body)
+  const parsed = registerSchema.safeParse(body)
   if (!parsed.success) {
     return Response.json({ error: parsed.error.flatten().fieldErrors }, { status: 400 })
   }
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
   const hashed = await hash(password, 12)
   const user = await prisma.user.create({
-    data: { email, password: hashed },
+    data: { name, email, password: hashed },
   })
 
   return Response.json({ id: user.id, email: user.email }, { status: 201 })

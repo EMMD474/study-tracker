@@ -7,15 +7,26 @@ import FormField from "@/components/auth/FormField";
 import PasswordInput from "@/components/auth/PasswordInput";
 import AuthSubmitButton from "@/components/auth/AuthSubmitButton";
 import SignIn from "@/components/auth/SignIn";
+import { authApi } from "@/lib/api"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // handle register logic
+    authApi.register({ name, email, password })
+      .then(() => {
+        toast.success("Registration successful")
+        router.push("/auth/login")
+      })
+      .catch((err) => {
+        console.error("Registration failed:", err)
+      })
   };
 
   return (

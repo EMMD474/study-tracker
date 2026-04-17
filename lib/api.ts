@@ -7,6 +7,11 @@ const api = axios.create({
   },
 });
 
+export const authApi = {
+  register: (data: { name: string; email: string; password: string }) =>
+    api.post("/auth/register", data).then((res) => res.data),
+}
+
 export const courseApi = {
   list: () => api.get("/course").then((res) => res.data),
   create: (data: { name: string; priority: string; allocatedTime: number }) =>
