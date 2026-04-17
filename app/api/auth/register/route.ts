@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     return Response.json({ error: parsed.error.flatten().fieldErrors }, { status: 400 })
   }
 
-  const { email, password } = parsed.data
+  const {name, email, password } = parsed.data
 
   const existing = await prisma.user.findUnique({ where: { email } })
   if (existing) {
