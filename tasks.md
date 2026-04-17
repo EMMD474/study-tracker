@@ -11,10 +11,12 @@ This document breaks down the project design into actionable development steps, 
 - [x] Implement authentication (NextAuth.js) with registration and login pages.
 
 ### 2. Course Management & Planning
-- [ ] Create API routes/server actions to Create, Read, Update, and Delete (CRUD) courses.
-- [ ] Build the UI for users to add subjects, including fields for name, allocated time, and priority.
+- [x] Create API routes/server actions to Create, Read, Update, and Delete (CRUD) courses.
+- [x] Build the UI for users to add subjects, including fields for name, allocated time, and priority.
+- [x] Connect courses frontend to the database with real-time updates and notifications.
 - [ ] Implement the scheduling algorithm to generate daily study plans based on the user's allocated time and course priorities.
 - [x] Build the UI to display the generated study plan to the user.
+- [x] Set up Sonner for global UI toast notifications.
 
 ### 3. Daily Logging & Dashboard
 - [x] Build the main user dashboard to display today's scheduled tasks.
