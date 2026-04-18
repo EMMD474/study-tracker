@@ -12,11 +12,13 @@ import LogoutIcon from "@mui/icons-material/Logout"
 import DashboardIcon from "@mui/icons-material/Dashboard"
 import MenuBookIcon from "@mui/icons-material/MenuBook"
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"
+import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
 
 const navLinks = [
   { label: "Dashboard", href: "/dashboard", icon: <DashboardIcon fontSize="small" /> },
   { label: "Courses", href: "/courses", icon: <MenuBookIcon fontSize="small" /> },
   { label: "Timetable", href: "/timetable", icon: <CalendarMonthIcon fontSize="small" /> },
+  { label: "Timer", href: "/timer", icon: <AccessAlarmsIcon fontSize="small" /> },
 ]
 
 const hiddenOn = ["/", "/auth/login", "/auth/register"]

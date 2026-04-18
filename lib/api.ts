@@ -21,4 +21,20 @@ export const courseApi = {
   delete: (id: string) => api.delete(`/course/${id}`).then((res) => res.data),
 };
 
+export const dashboardApi = {
+  get: () => api.get("/dashboard").then((res) => res.data),
+}
+
+export const studyTaskApi = {
+  update: (id: string, data: { status: "PENDING" | "COMPLETED" | "MISSED" }) =>
+    api.patch(`/study-task/${id}`, data).then((res) => res.data),
+}
+
+export const materialApi = {
+  list: (courseId: string) => api.get(`/course/${courseId}/material`).then((res) => res.data),
+  add: (courseId: string, data: { fileName: string; fileUrl: string }) =>
+    api.post(`/course/${courseId}/material`, data).then((res) => res.data),
+  delete: (id: string) => api.delete(`/material/${id}`).then((res) => res.data),
+}
+
 export default api;

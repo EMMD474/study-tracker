@@ -32,3 +32,8 @@ export const courseSchema = z.object({
     .min(15, "Time must be at least 15 minutes")
     .max(1440, "Time cannot exceed 24 hours"),
 })
+
+export const materialSchema = z.object({
+  fileName: z.string({ message: "File name is required" }).min(1, "File name is required").max(255),
+  fileUrl: z.string({ message: "File URL is required" }).url("Invalid URL"),
+})

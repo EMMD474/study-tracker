@@ -14,14 +14,14 @@ This document breaks down the project design into actionable development steps, 
 - [x] Create API routes/server actions to Create, Read, Update, and Delete (CRUD) courses.
 - [x] Build the UI for users to add subjects, including fields for name, allocated time, and priority.
 - [x] Connect courses frontend to the database with real-time updates and notifications.
-- [ ] Implement the scheduling algorithm to generate daily study plans based on the user's allocated time and course priorities.
+- [x] Implement the scheduling algorithm to generate daily study plans based on the user's allocated time and course priorities.
 - [x] Build the UI to display the generated study plan to the user.
 - [x] Set up Sonner for global UI toast notifications.
 
 ### 3. Daily Logging & Dashboard
 - [x] Build the main user dashboard to display today's scheduled tasks.
 - [x] Implement the feature to mark a study session as "completed".
-- [ ] Create API routes to store completed logs in the database.
+- [x] Create API routes to store completed logs in the database.
 - [x] Develop a view for users to see past progress and streaks over the week/month.
 
 ---

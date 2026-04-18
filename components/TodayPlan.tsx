@@ -10,7 +10,9 @@ type SessionStatus = 'pending' | 'active' | 'completed'
 
 type StudySession = {
   id: string
-  course: string
+  courseId: string
+  courseName: string
+  priority: string
   startTime: string
   endTime: string
   duration: string
@@ -24,40 +26,7 @@ type TodayPlanProps = {
 }
 
 const TodayPlan: React.FC<TodayPlanProps> = ({
-  sessions = [
-    {
-      id: '1',
-      course: 'Mathematics',
-      startTime: '09:00',
-      endTime: '10:30',
-      duration: '1h 30m',
-      status: 'completed',
-    },
-    {
-      id: '2',
-      course: 'Physics',
-      startTime: '11:00',
-      endTime: '12:30',
-      duration: '1h 30m',
-      status: 'active',
-    },
-    {
-      id: '3',
-      course: 'Computer Science',
-      startTime: '14:00',
-      endTime: '15:30',
-      duration: '1h 30m',
-      status: 'pending',
-    },
-    {
-      id: '4',
-      course: 'Chemistry',
-      startTime: '16:00',
-      endTime: '17:00',
-      duration: '1h',
-      status: 'pending',
-    },
-  ],
+  sessions = [],
   onStartSession,
   onCompleteSession,
 }) => {
@@ -180,7 +149,7 @@ const TodayPlan: React.FC<TodayPlanProps> = ({
                           : 'none',
                     }}
                   >
-                    {session.course}
+                    {session.courseName}
                   </Typography>
                   <div className="flex items-center gap-3">
                     <span
