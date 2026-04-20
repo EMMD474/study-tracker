@@ -8,6 +8,8 @@ PRISMA := npx prisma
 
 .PHONY: dev
 dev: ## Run the development server
+# 	run docker container for db
+	docker compose up -d
 	$(PM) run dev
 
 .PHONY: build
