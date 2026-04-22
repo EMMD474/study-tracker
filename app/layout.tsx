@@ -4,6 +4,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import "./globals.css";
 import { Toaster } from "sonner";
 import TopNav from "@/components/TopNav";
+import Providers from "@/components/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,9 +33,11 @@ export default function RootLayout({
     >
       <body className="flex min-h-dvh flex-col">
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          {/* <TopNav /> */}
-          {children}
-          <Toaster richColors position="top-center" closeButton />
+          <Providers>
+            {/* <TopNav /> */}
+            {children}
+            <Toaster richColors position="top-center" closeButton />
+          </Providers>
         </AppRouterCacheProvider>
       </body>
     </html>
