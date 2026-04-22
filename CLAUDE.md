@@ -40,13 +40,20 @@ Database models: **User** → **Course** → **StudyTask** / **Material**. A use
 
 ### Key paths
 
-- `app/` — Next.js App Router pages and layouts
 - `app/auth/` — Login and register pages
-- `app/dashboard/` — Main dashboard (in progress)
-- `app/courses/` — Course management (in progress)
+- `app/(main)/` — Route group for authenticated pages (dashboard, courses, timetable, timer); uses `MainLayout.tsx` which renders `TopNav` and a global floating action button for creating courses
+- `app/api/` — Route handlers; all protected routes call `auth()` from `@/auth` to get the session
+- `auth.ts` — NextAuth v5 config (Google OAuth + Credentials providers); exposes `{ handlers, signIn, signOut, auth }`
+- `lib/prisma.ts` — Singleton Prisma client using `@prisma/adapter-pg` (driver-adapter mode, not the default TCP client)
+- `lib/scheduler.ts` — `generateDailyTasks` (called on dashboard load) and `calculateStreak` server-side helpers
+- `lib/api.ts` — Client-side API wrappers (axios)
+- `lib/zod.ts` — Shared Zod schemas: `signInSchema`, `registerSchema`, `courseSchema`, `materialSchema`
 - `components/auth/` — Auth UI components including `AuthQuoteSlider` (animated carousel)
-- `components/ComingSoonBanner.tsx` — Global banner shown in root layout
 - `prisma/schema.prisma` — Database schema
+
+### Auth
+
+NextAuth v5 (beta). Use `auth()` in Server Components / Route Handlers to get the session. `session.user.id` is populated via the `jwt` callback in `auth.ts`. Google OAuth upserts the user into the DB on first sign-in.
 
 ### Styling
 
