@@ -75,7 +75,7 @@ function SubjectCell({ subject }: { subject: string }) {
   
   return (
     <div
-      className={`group relative flex min-h-[4rem] w-full flex-col justify-center rounded-xl border border-transparent px-3 py-2.5 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:z-10 bg-gradient-to-br from-transparent to-black/20 ${color.hoverBorder} ${color.hoverShadow} ${color.bg}`}
+      className={`group relative flex min-h-[4rem] w-full flex-col justify-center overflow-hidden rounded-xl border border-transparent px-3 py-2.5 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:z-10 bg-gradient-to-br from-transparent to-black/20 ${color.hoverBorder} ${color.hoverShadow} ${color.bg}`}
     >
       {/* Accent Line */}
       <div className={`absolute left-0 top-0 h-full w-1 ${color.dot} opacity-80 transition-transform duration-300 group-hover:scale-y-110`} />
