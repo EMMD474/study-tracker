@@ -4,14 +4,14 @@ import { materialSchema } from "@/lib/zod"
 
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ courseId: string }> }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await auth()
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const { courseId } = await params
+  const { id: courseId } = await params
 
   try {
     const materials = await prisma.material.findMany({
@@ -30,7 +30,7 @@ export async function GET(
 
 export async function POST(
   req: Request,
-  { params }: { params: { courseId: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await auth()
   if (!session?.user?.id) {
@@ -45,7 +45,7 @@ export async function POST(
       return Response.json({ error: parsed.error.flatten().fieldErrors }, { status: 400 })
     }
 
-    const { courseId } = await params
+    const { id: courseId } = await params
     const { fileName, fileUrl } = parsed.data
 
     // Verify course belongs to user
