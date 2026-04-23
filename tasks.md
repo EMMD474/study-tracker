@@ -24,18 +24,23 @@ This document breaks down the project design into actionable development steps, 
 - [x] Create API routes to store completed logs in the database.
 - [x] Develop a view for users to see past progress and streaks over the week/month.
 
+### 4. Productivity Tools & Focus
+- [x] Build a premium, customizable Pomodoro / Focus Timer component.
+- [x] Create a dedicated Focus Mode page for deep work sessions.
+- [ ] Implement session logging to track focus time in the database.
+
 ---
 
 ## Section 2: Advanced Features & Integrations
 
-### 4. Background Jobs & Email Notifications
+### 5. Background Jobs & Email Notifications
 - [ ] Set up an email service provider (e.g., Resend).
 - [ ] Implement a cron job or background worker to send out the "Daily Agenda" emails early in the morning.
 - [ ] Implement a scheduled check at **22:00 (10:00 PM)** to verify pending study sessions and send a 2-hour warning email for incomplete tasks.
 - [ ] Implement a midnight script (24 hours mark) to automatically update any unresolved study tasks as "not done" or "missed".
 
-### 5. Course Material & Resource Management
+### 6. Course Material & Resource Management
 - [ ] Set up file storage (e.g., Supabase Storage) for handling file uploads.
-- [ ] Build the UI for users to upload PDFs, documents, or paste helpful links associated with specific courses.
-- [ ] Update the study dashboard so that when a user interacts with a course, they can readily access the uploaded materials.
-- [ ] Secure the file access to ensure users can only view their own uploaded materials.
+- [x] Build the UI for users to upload PDFs, documents, or paste helpful links associated with specific courses.
+- [/] Update the study dashboard so that when a user interacts with a course, they can readily access the uploaded materials. (UI built, using mock data)
+- [x] Secure the file access to ensure users can only view their own uploaded materials. (Backend verification implemented)
