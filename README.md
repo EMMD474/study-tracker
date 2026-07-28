@@ -31,7 +31,7 @@
 
 ---
 
-## Prerequisites
+## Prerequisite(s)
 
 - **Node.js** v18+
 - **pnpm**
