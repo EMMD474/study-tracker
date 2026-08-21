@@ -37,7 +37,7 @@
 - **pnpm**
 - **Docker & Docker Compose**
 
----
+--
 
 ## Getting Started
 
