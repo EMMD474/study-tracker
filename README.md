@@ -6,7 +6,7 @@
 
 ---
 
-## Features
+## Feature(s)
 
 - **Premium Aesthetic**: A custom "Black & Gold" high-fidelity theme (Tailwind CSS v4).
 - **Authentication**: Email/password credentials and Google OAuth, both persisted to the database.
