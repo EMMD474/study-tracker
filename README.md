@@ -4,7 +4,7 @@
 
 **Please see [`design.md`](./design.md) for the detailed project plan and features roadmap.**
 
----
+--
 
 ## Feature(s)
 
