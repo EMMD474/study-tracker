@@ -1,4 +1,4 @@
-# Median Stratum (Study Tracker)
+# Median Stratum (Study Trackers)
 
 **Median Stratum** is a premium, academic-focused study planning and progress tracking system. It's built for students who need more than just a to-do list—it's a system to track every subject, every session, and stay consistent through high-priority scheduling and smart reminders.
 
